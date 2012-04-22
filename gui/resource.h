@@ -335,6 +335,7 @@
 #define IDC_EDIT2                       1216
 #define IDC_CONF_WARNING                1217
 #define IDC_USE_SMALL_BOOT              1218
+#define IDC_MNT_READONLY                1219
 #define ID_FILE_EXIT                    40001
 #define ID_VOLUMES_ENCRYPT              40002
 #define ID_VOLUMES_DECRYPT              40003

@@ -492,12 +492,17 @@ on_fail:
 
 NTSTATUS io_read_write_irp(dev_hook *hook, PIRP irp)
 {
+	PIO_STACK_LOCATION irp_sp = IoGetCurrentIrpStackLocation(irp);
+
 	/* reseed RNG on first 1000 I/O operations for collect initial entropy */
 	if (lock_inc(&dc_io_count) < 1000) {
 		cp_rand_reseed();
 	}
 	if (hook->flags & (F_DISABLE | F_FORMATTING)) {
 		return dc_release_irp(hook, irp, STATUS_INVALID_DEVICE_STATE);
+	}
+	if (irp_sp->MajorFunction == IRP_MJ_WRITE && (hook->mnt_flags & MF_READONLY)) {
+		return dc_release_irp(hook, irp, STATUS_MEDIA_WRITE_PROTECTED);
 	}
 	if (hook->flags & F_SYNC)
 	{

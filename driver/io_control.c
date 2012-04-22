@@ -554,6 +554,10 @@ NTSTATUS dc_io_control_irp(dev_hook *hook, PIRP irp)
 			dc_update_volume(hook);
 			return dc_release_irp(hook, irp, STATUS_SUCCESS);
 		}
+		if ( (hook->mnt_flags & MF_READONLY) && ( (ioctl == IOCTL_DISK_IS_WRITABLE) ||
+			(ioctl == IOCTL_DISK_SET_PARTITION_INFO) || (ioctl == IOCTL_DISK_SET_PARTITION_INFO_EX) )) {
+			return dc_release_irp(hook, irp, STATUS_MEDIA_WRITE_PROTECTED);
+		}
 	}	
 	return dc_forward_irp(hook, irp);
 }

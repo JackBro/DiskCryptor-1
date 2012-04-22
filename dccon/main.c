@@ -74,6 +74,7 @@ static void print_usage()
 		L"    -mp [mount point]     Add volume mount point\n"
 		L"    -p  [password]        Get password from command line\n"
 		L"    -kf [keyfiles path]   Use keyfiles\n"
+		L"    -ro                   Mounts device readonly\n"
 		L" -mountall [param]               Mount all encrypted devices\n"
 		L"    -p  [password]        Get password from command line\n"
 		L"    -kf [keyfiles path]   Use keyfiles\n"
@@ -809,6 +810,7 @@ int wmain(int argc, wchar_t *argv[])
 			dc_pass *pass;
 			wchar_t *mp_c;
 			size_t   s;
+			int flags = 0;
 
 			if ( (inf = find_device(argv[2])) == NULL ) {
 				resl = ST_NF_DEVICE; break;
@@ -831,11 +833,15 @@ int wmain(int argc, wchar_t *argv[])
 				resl = ST_OK; break;
 			}
 
-			if ( (mp_c != NULL) && (inf->status.mnt_point[0] == L'\\') ) {
-				resl = dc_mount_volume(inf->device, pass, MF_DELMP);
-			} else {
-				resl = dc_mount_volume(inf->device, pass, 0);
+			if(get_param(L"-ro")) {
+				flags |= MF_READONLY;
 			}
+
+			if ( (mp_c != NULL) && (inf->status.mnt_point[0] == L'\\') ) {
+				flags |= MF_DELMP;
+			}
+
+			resl = dc_mount_volume(inf->device, pass, flags);
 
 			if ( (resl == ST_OK) && (mp_c != NULL) )
 			{

@@ -22,11 +22,12 @@
 #define F_CLEAR_ON_UNMOUNT ( \
 	F_ENABLED | F_SYNC | F_REENCRYPT | F_FORMATTING | F_PROTECT_DCSYS | F_NO_REDIRECT )
 
-/* unmount flags */
+/* (un)mount flags */
 #define MF_FORCE    0x01 /* unmount volume if FSCTL_LOCK_VOLUME fail */
 #define MF_NOFSCTL  0x02 /* no send FSCTL_DISMOUNT_VOLUME            */
 #define MF_NOSYNC   0x04 /* no stop syncronous mode thread */
 #define MF_DELMP    0x08 /* delete volume mount point when unmount */
+#define MF_READONLY 0x10 /* mounts the device read only */
 
 /* operation status codes */
 #define ST_OK             0  /* operation completed successfull */

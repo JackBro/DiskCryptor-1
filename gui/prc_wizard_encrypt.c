@@ -129,7 +129,7 @@ void _run_wizard_action(
 		wchar_t mnt_point[MAX_PATH] = { 0 };
 		wchar_t vol[MAX_PATH];
 
-		dlgpass dlg_info = { node, NULL, NULL, mnt_point };
+		dlgpass dlg_info = { node, NULL, NULL, mnt_point, FALSE };
 
 		ShowWindow(hwnd, FALSE);
 		if ( _dlg_get_pass(__dlg, &dlg_info) == ST_OK )

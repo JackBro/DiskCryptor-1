@@ -119,6 +119,7 @@ typedef struct _dlgpass
 	dc_pass *pass;
 	dc_pass *new_pass;
 	wchar_t *mnt_point;
+    BOOL mnt_readonly;
 
 } dlgpass, *pdlgpass;
 

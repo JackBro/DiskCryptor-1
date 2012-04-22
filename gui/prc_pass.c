@@ -420,6 +420,7 @@ _password_dlg_proc(
 			{
 				HWND mnt_combo = GetDlgItem( hwnd, IDC_COMBO_MNPOINT );
 				HWND mnt_check = GetDlgItem( hwnd, IDC_CHECK_MNT_SET );
+				HWND mnt_readonly = GetDlgItem( hwnd, IDC_MNT_READONLY );
 				HWND mnt_label = GetDlgItem( hwnd, IDC_MNT_POINT );
 
 				BOOL enable;
@@ -431,9 +432,12 @@ _password_dlg_proc(
 				EnableWindow( mnt_combo, enable );
 				EnableWindow( mnt_check, enable );
 				EnableWindow( mnt_label, enable );
+				EnableWindow( mnt_readonly, enable );
 
 				_sub_class( GetDlgItem(hwnd, IDC_CHECK_MNT_SET), SUB_STATIC_PROC, HWND_NULL );
 				_set_check( hwnd, IDC_CHECK_MNT_SET, enable );
+				_sub_class( GetDlgItem(hwnd, IDC_MNT_READONLY), SUB_STATIC_PROC, HWND_NULL );
+				_set_check( hwnd, IDC_MNT_READONLY, FALSE );
 
 			}
 			SendMessage(
@@ -544,6 +548,7 @@ _password_dlg_proc(
 								MAX_PATH
 						);
 					}
+					info->mnt_readonly = _get_check(hwnd, IDC_MNT_READONLY);
 				}
 				EndDialog (hwnd, id);
 				return 1L;
