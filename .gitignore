@@ -1,3 +1,10 @@
+*.suo
 *.vcxproj.filters
 *.vcxproj.user
+*.tlog
+*.lastbuildstate
+*.unsuccessfulbuild
 ResolveAssemblyReference.cache
+boot/bin
+debug/*
+release/*

@@ -86,7 +86,7 @@
       <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>ntoskrnl.lib hal.lib fltMgr.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>ntoskrnl.lib hal.lib fltMgr.lib bufferoverflowK.lib %(AdditionalOptions)</AdditionalOptions>
       <OutputFile>$(OutDir)dcrypt.sys</OutputFile>
       <AdditionalLibraryDirectories>$(DDK)\lib\win7\i386\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -142,7 +142,7 @@
       <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>ntoskrnl.lib hal.lib fltMgr.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>ntoskrnl.lib hal.lib fltMgr.lib bufferoverflowK.lib %(AdditionalOptions)</AdditionalOptions>
       <OutputFile>$(OutDir)dcrypt.sys</OutputFile>
       <AdditionalLibraryDirectories>$(DDK)\lib\win7\amd64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
