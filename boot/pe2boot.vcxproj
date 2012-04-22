@@ -40,14 +40,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(Configuration)\boot\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\\boot\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(Configuration)\boot\obj\$(ProjectName)\</IntDir>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
-    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(Configuration)\boot\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\boot\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(Configuration)\boot\obj\$(ProjectName)\</IntDir>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -57,9 +55,6 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -70,22 +65,21 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0500;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_WIN32_WINNT=0x0500;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)\bin\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>..\lib\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -97,9 +91,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -107,22 +98,19 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0500;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_WIN32_WINNT=0x0500;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)\bin\$(ProjectName).exe</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).intermediate.manifest</ManifestFile>
       <EnableUAC>false</EnableUAC>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -134,12 +122,6 @@
       </MergeSections>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <Manifest>
-      <OutputManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest</OutputManifestFile>
-    </Manifest>
-    <ManifestResourceCompile>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
-    </ManifestResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="pe2boot.c" />

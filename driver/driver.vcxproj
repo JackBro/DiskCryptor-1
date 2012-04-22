@@ -39,13 +39,11 @@
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <ReferencePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\WinDDK\6000\inc\ddk;$(ReferencePath)</ReferencePath>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(Configuration)\i386\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</IntDir>
-    <ExtensionsToDeleteOnClean Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">*.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
     <ReferencePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">c:\WinDDK\6000\inc\ddk;$(ReferencePath)</ReferencePath>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\$(Configuration)\amd64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)</IntDir>
-    <ExtensionsToDeleteOnClean Condition="'$(Configuration)|$(Platform)'=='Release|x64'">*.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</GenerateManifest>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
@@ -53,11 +51,12 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.sys</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.sys</TargetExt>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">dcrypt</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">dcrypt</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -70,29 +69,27 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(DDK)\inc\ddk\;$(DDK)\inc\crt\;$(DDK)\inc\api\;..\include;..\crypto\crypto_fast;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>IS_DRIVER;_X86_=1;i386=1;_WIN32_WINNT=0x0601;WINVER=0x0601;NDEBUG;NTDDI_VERSION=0x06010000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(DDK)\inc\ddk;$(DDK)\inc\crt;$(DDK)\inc\api;..\include;..\crypto\crypto_fast;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IS_DRIVER;_X86_;_WIN32_WINNT=0x0601;NTDDI_VERSION=0x06010000;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>StdCall</CallingConvention>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>ntoskrnl.lib hal.lib fltMgr.lib bufferoverflowK.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>ntoskrnl.lib;hal.lib;fltMgr.lib;bufferoverflowK.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)dcrypt.sys</OutputFile>
-      <AdditionalLibraryDirectories>$(DDK)\lib\win7\i386\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DDK)\lib\win7\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Native</SubSystem>
-      <Driver>Driver</Driver>
+      <Driver>WDM</Driver>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <EntryPointSymbol>DriverEntry</EntryPointSymbol>
@@ -107,9 +104,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -125,13 +119,11 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(DDK)\inc\ddk\;$(DDK)\inc\crt\;$(DDK)\inc\api\;..\include;..\crypto\crypto_fast;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>IS_DRIVER;_WIN64;_AMD64_;AMD64;_WIN32_WINNT=0x0601;WINVER=0x0601;NDEBUG;NTDDI_VERSION=0x06010000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(DDK)\inc\ddk;$(DDK)\inc\crt;$(DDK)\inc\api;..\include;..\crypto\crypto_fast;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IS_DRIVER;_AMD64_;_WIN32_WINNT=0x0601;NTDDI_VERSION=0x06010000;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>StdCall</CallingConvention>
@@ -139,15 +131,14 @@
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>ntoskrnl.lib hal.lib fltMgr.lib bufferoverflowK.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>ntoskrnl.lib;hal.lib;fltMgr.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)dcrypt.sys</OutputFile>
-      <AdditionalLibraryDirectories>$(DDK)\lib\win7\amd64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DDK)\lib\win7\amd64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Native</SubSystem>
-      <Driver>Driver</Driver>
+      <Driver>WDM</Driver>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <EntryPointSymbol>DriverEntry</EntryPointSymbol>

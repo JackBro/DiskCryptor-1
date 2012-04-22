@@ -13,7 +13,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -27,20 +27,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(Configuration)\boot\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\boot\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(Configuration)\boot\obj\$(ProjectName)\</IntDir>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
-    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -58,8 +54,6 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -67,7 +61,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/MERGE:.data=.text /MERGE:.rdata=.text %(AdditionalOptions)</AdditionalOptions>
-      <OutputFile>$(ProjectDir)\bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -85,7 +79,7 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>$(ProjectDir)\bin\pe2boot.exe $(ProjectDir)\bin\$(ProjectName).dll $(ProjectDir)\bin\$(ProjectName).mod</Command>
+      <Command>"$(ProjectDir)\bin\pe2boot.exe" "$(ProjectDir)\bin\$(ProjectName).dll" "$(ProjectDir)\bin\$(ProjectName).mod"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

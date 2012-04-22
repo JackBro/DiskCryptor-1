@@ -66,15 +66,15 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(Configuration)\i386\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\$(Configuration)\amd64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(Configuration)\i386\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\$(Configuration)\amd64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</GenerateManifest>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
@@ -91,17 +91,12 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\include;..\include\dccon;..\crypto\crypto_fast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0500;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -110,28 +105,16 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>shlwapi.lib kernel32.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>..\lib\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).intermediate.manifest</ManifestFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <Manifest>
-      <OutputManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest</OutputManifestFile>
-    </Manifest>
-    <ManifestResourceCompile>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
-    </ManifestResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
@@ -141,8 +124,6 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0500;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -151,28 +132,16 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_WIN64;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>shlwapi.lib kernel32.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>..\lib\amd64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).intermediate.manifest</ManifestFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
-    <Manifest>
-      <OutputManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest</OutputManifestFile>
-    </Manifest>
-    <ManifestResourceCompile>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
-    </ManifestResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -185,8 +154,6 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -194,28 +161,20 @@
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>shlwapi.lib kernel32.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>..\lib\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt_winxp.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DDK)\lib\Crt\i386;$(DDK)\lib\win7\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Manifest>
-      <OutputManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest</OutputManifestFile>
-      <AdditionalManifestFiles>$(ProjectDir)\dccon.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <AdditionalManifestFiles>dccon.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
-    <ManifestResourceCompile>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
-    </ManifestResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
@@ -231,8 +190,6 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -241,23 +198,18 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>shlwapi.lib kernel32.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>..\lib\amd64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt_win2003.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DDK)\lib\Crt\amd64;$(DDK)\lib\win7\amd64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Manifest>
-      <OutputManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest</OutputManifestFile>
-      <AdditionalManifestFiles>$(ProjectDir)\dccon.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <AdditionalManifestFiles>dccon.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
-    <ManifestResourceCompile>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
-    </ManifestResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="boot_menu.c" />

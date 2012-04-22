@@ -67,19 +67,17 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(Configuration)\i386\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\$(Configuration)\amd64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(Configuration)\i386\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
-    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\$(Configuration)\amd64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)obj\$(ProjectName)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</GenerateManifest>
-    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EmbedManifest>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -94,9 +92,6 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -109,8 +104,6 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -118,34 +111,26 @@
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\include;..\include\dcapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <PreLinkEvent>
       <Command>
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalOptions>user32.lib psapi.lib advapi32.lib kernel32.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>..\lib\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).intermediate.manifest</ManifestFile>
+      <AdditionalDependencies>advapi32.lib;user32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EnableUAC>false</EnableUAC>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <Manifest>
-      <AdditionalManifestFiles>$(OutDir)obj\$(ProjectName)\$(TargetFileName).intermediate.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
-    </Manifest>
     <PostBuildEvent>
       <Command>
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -163,8 +148,6 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -173,32 +156,24 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_AFXDLL;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;..\include\dcapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <PreLinkEvent>
       <Command>
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalOptions>user32.lib psapi.lib advapi32.lib kernel32.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>..\lib\amd64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ManifestFile>$(OutDir)obj\$(ProjectName)\$(TargetFileName).intermediate.manifest</ManifestFile>
+      <AdditionalDependencies>advapi32.lib;user32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EnableUAC>false</EnableUAC>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
-    <Manifest>
-      <AdditionalManifestFiles>$(OutDir)obj\$(ProjectName)\$(TargetFileName).intermediate.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
-    </Manifest>
     <PostBuildEvent>
       <Command>
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -215,8 +190,6 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -224,15 +197,14 @@
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\include;..\include\dcapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <PreLinkEvent>
       <Command>
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalOptions>user32.lib psapi.lib advapi32.lib kernel32.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>..\lib\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt_winxp.obj;advapi32.lib;user32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DDK)\lib\Crt\i386;$(DDK)\lib\win7\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
@@ -243,9 +215,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <BuildLog>
-      <Path>$(OutDir)obj\$(ProjectName)\BuildLog.htm</Path>
-    </BuildLog>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -265,8 +234,6 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AssemblerListingLocation>
       </AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)obj\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)obj\$(ProjectName)\vc80.pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>
       </XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -275,15 +242,14 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_AFXDLL;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;..\include\dcapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ResourceOutputFileName>$(OutDir)obj\$(ProjectName)\%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <PreLinkEvent>
       <Command>
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalOptions>user32.lib psapi.lib advapi32.lib kernel32.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>..\lib\amd64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt_win2003.obj;advapi32.lib;user32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DDK)\lib\Crt\amd64;$(DDK)\lib\win7\amd64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
