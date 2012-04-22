@@ -28,7 +28,7 @@ UsePreviousTasks=yes
 ChangesEnvironment=yes
 AlwaysRestart=yes
 AppMutex=DISKCRYPTOR_MUTEX
-SignedUninstaller=yes
+SignedUninstaller=no
 
 [Tasks]
 Name: desktopicon; Description: "Create a &desktop icon";
