@@ -8,3 +8,6 @@ ResolveAssemblyReference.cache
 boot/bin
 debug/*
 release/*
+bartpe/*.dll
+bartpe/*.exe
+bartpe/*.sys
