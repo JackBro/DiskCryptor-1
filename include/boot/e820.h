@@ -1,7 +1,7 @@
 #ifndef _E820_
 #define _E820_
 
-#define E820MAX	32		/* number of entries in E820MAP */
+#define E820MAX	128		/* number of entries in E820MAP */
 
 #define E820_RAM	1
 #define E820_RESERVED	2

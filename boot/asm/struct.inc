@@ -62,7 +62,7 @@ ends
 
 struct e820_map
   n_map dd ?
-  map	rb (32 * sizeof.e820_entry)
+  map	rb (128 * sizeof.e820_entry)
 ends
 
 struct bd_data
